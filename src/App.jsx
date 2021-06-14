@@ -5,8 +5,13 @@ function App() {
     const [game, setGame] = useState(null);
 
     const newGame = async () => {
-        const response = myNew();
-        setGame(response);
+        try {
+            const response = await fetch("http://localhost:14420/new");
+            const json = await response.json();
+            setGame(json);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     if (game !== null) {
@@ -28,16 +33,6 @@ function App() {
             </button>
         </div>
     );
-}
-
-function myNew() {
-    // TODO fetch response from API
-    return {
-        id: "1893",
-        current: "________",
-        answer: null,
-        remainingGuesses: 6,
-    };
 }
 
 export default App;
