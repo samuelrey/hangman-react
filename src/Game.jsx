@@ -20,6 +20,9 @@ const Game = ({ game, handleGuess }) => {
                 <button
                     className="btn"
                     onClick={() => {
+                        let letterInput =
+                            document.querySelector(".letter-input");
+                        letterInput.value = "";
                         handleGuess(letter);
                     }}
                 >
