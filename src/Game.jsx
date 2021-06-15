@@ -7,6 +7,7 @@ const Game = ({ game, handleGuess }) => {
         setLetter(value);
     };
 
+    // TODO conditionally render game over state if the answer is not null.
     return (
         <div>
             <h2 className="current">{game.current}</h2>
@@ -23,7 +24,7 @@ const Game = ({ game, handleGuess }) => {
                         let letterInput =
                             document.querySelector(".letter-input");
                         letterInput.value = "";
-                        handleGuess(letter);
+                        handleGuess(letter.toUpperCase());
                     }}
                 >
                     Guess

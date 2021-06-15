@@ -16,7 +16,9 @@ function App() {
     };
 
     const handleGuess = (letter) => {
-        console.log("Guessed: ", letter);
+        const newGame = fakeGuess(letter, game);
+        console.log(newGame);
+        setGame(newGame);
     };
 
     if (game !== null) {
@@ -40,11 +42,49 @@ function App() {
     );
 }
 
+// I added this fake functionality to test the app independent of an API. Once
+// I'm satisfied with the view, replace this with actual API calls.
+const fakeAnswer = {
+    "Z": [0],
+    "E": [1],
+    "R": [2],
+    "O": [3],
+};
+
 const fakeGame = () => {
     return {
         id: "14420",
         current: "____",
         answer: null,
+        remainingGuesses: 6,
+    };
+};
+
+const fakeGuess = (letter, game) => {
+    let newCurrent = game.current;
+    let newRemainingGuesses = game.remainingGuesses;
+    let newAnswer = game.answer;
+
+    if (fakeAnswer[letter]) {
+        fakeAnswer[letter].forEach((index) => {
+            newCurrent = newCurrent.slice(0, index) +
+                letter + 
+                newCurrent.slice(index + 1)
+        });
+        delete fakeAnswer[letter];
+    } else {
+        newRemainingGuesses--;
+    }
+
+    if (newRemainingGuesses === 0) {
+        newAnswer = "ZERO";
+    }
+
+    return {
+        ...game, 
+        current: newCurrent, 
+        remainingGuesses: newRemainingGuesses, 
+        answer: newAnswer
     };
 };
 
