@@ -76,7 +76,7 @@ const fakeGuess = (letter, game) => {
         newRemainingGuesses--;
     }
 
-    if (newRemainingGuesses === 0) {
+    if (newRemainingGuesses === 0 || Object.keys(fakeAnswer).length === 0) {
         newAnswer = "ZERO";
     }
 
