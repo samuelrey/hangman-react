@@ -52,7 +52,12 @@ code {
     letter-spacing: 0.2rem;
 }
 
-.answer .current {
+.current {
+    color: white;
+    letter-spacing: 0.2rem;
+}
+
+.answer {
     color: white;
     letter-spacing: 0.2rem;
 }
