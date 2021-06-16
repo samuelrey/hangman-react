@@ -4,8 +4,9 @@ import InactiveGame from "./inactive";
 import ActiveGame from "./active"
 
 const GameContainer = () => {
-    const [letter, setLetter] = useState("");
     const [game, setGame] = useState(null);
+    const [guesses, setGuesses] = useState([]);
+    const [letters, setLetters] = useState([]);
 
     const newGame = async () => {
         // try {
@@ -16,15 +17,25 @@ const GameContainer = () => {
         //     console.log(error);
         // }
         setGame(fakeGame());
+        setGuesses([]);
+        setLetters(alphabet());
+        resetAnswer();
     };
 
-    const guess = () => {
+    const guess = (letter) => {
         const newGame = fakeGuess(letter, game);
-        setGame(newGame);
-    };
+        let newGuessed = guesses;
+        let newLetters = letters;
 
-    const updateLetter = (letter) => {
-        setLetter(letter);
+        newGuessed.push(letter);
+        newGuessed.sort();
+
+        let index = newLetters.indexOf(letter);
+        newLetters.splice(index, 1);
+
+        setGame(newGame);
+        setGuesses(newGuessed);
+        setLetters(newLetters);
     };
 
     if (game === null) {
@@ -35,12 +46,17 @@ const GameContainer = () => {
         return <GameOver game={game} handleNew={newGame} />;
     }
 
-    return <ActiveGame game={game} handleLetter={(updateLetter)} handleGuess={guess} />;
+    return <ActiveGame game={game} handleGuess={guess} letters={letters} guesses={guesses} />;
 };
+
+const alphabet = () => {
+    const ascii = Array.from(Array(26)).map((e, i) => i + 65);
+    return ascii.map((x) => String.fromCharCode(x));
+}
 
 // I added this fake functionality to test the app independent of an API. Once
 // I'm satisfied with the view, replace this with actual API calls.
-const fakeAnswer = {
+let fakeAnswer = {
     "Z": [0],
     "E": [1],
     "R": [2],
@@ -83,5 +99,14 @@ const fakeGuess = (letter, game) => {
         answer: newAnswer
     };
 };
+
+const resetAnswer = () => {
+    fakeAnswer = {
+        "Z": [0],
+        "E": [1],
+        "R": [2],
+        "O": [3], 
+    }
+}
 
 export default GameContainer;

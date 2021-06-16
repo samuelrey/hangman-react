@@ -1,25 +1,37 @@
 import React from "react";
 
-const ActiveGame = ({game, handleLetter, handleGuess}) => {
+const ActiveGame = ({game, handleGuess, letters, guesses}) => {
     return (
         <div>
             <h2 className="current">{game.current}</h2>
-            <p>
-                <input
-                    className="letter-input"
-                    maxLength={1}
-                    onChange={(e) => {
-                        handleLetter(e.target.value.toUpperCase());
-                    }}
-                />
-
-                <button
-                    className="btn"
-                    onClick={handleGuess}
-                >
-                    Guess
-                </button>
-            </p>
+            <div>
+                {letters.map((letter) => {
+                    return (
+                        <button 
+                            key={letter}
+                            onClick={() => handleGuess(letter)} 
+                            className="btn"
+                        >
+                            {letter}
+                        </button>
+                    )
+                })}
+            </div>
+            <div>
+                {guesses.map((letter) => {
+                    return (
+                        <button
+                            key={letter}
+                            className="btn"
+                        >
+                            {letter}
+                        </button>
+                    )
+                })}
+            </div>
+            <div>
+                <h2>Remaining guesses: {game.remainingGuesses}</h2>
+            </div>
         </div>
     );
 }
