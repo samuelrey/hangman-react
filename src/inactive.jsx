@@ -1,6 +1,6 @@
 import React from "react";
 
-const InactiveGame = ({handleNew}) => {
+const InactiveGame = ({ handleNew }) => {
     return (
         <div className="App">
             <h2>hangman</h2>
@@ -9,6 +9,6 @@ const InactiveGame = ({handleNew}) => {
             </button>
         </div>
     );
-}
+};
 
 export default InactiveGame;

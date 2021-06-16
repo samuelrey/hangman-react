@@ -1,32 +1,29 @@
 import React from "react";
 
-const ActiveGame = ({game, handleGuess, letters, guesses}) => {
+const ActiveGame = ({ game, handleGuess, letters, guesses }) => {
     return (
         <div>
             <h2 className="current">{game.current}</h2>
             <div>
                 {letters.map((letter) => {
                     return (
-                        <button 
+                        <button
                             key={letter}
-                            onClick={() => handleGuess(letter)} 
+                            onClick={() => handleGuess(letter)}
                             className="btn"
                         >
                             {letter}
                         </button>
-                    )
+                    );
                 })}
             </div>
             <div>
                 {guesses.map((letter) => {
                     return (
-                        <button
-                            key={letter}
-                            className="btn guessed"
-                        >
+                        <button key={letter} className="btn guessed">
                             {letter}
                         </button>
-                    )
+                    );
                 })}
             </div>
             <div>
@@ -34,6 +31,6 @@ const ActiveGame = ({game, handleGuess, letters, guesses}) => {
             </div>
         </div>
     );
-}
+};
 
 export default ActiveGame;

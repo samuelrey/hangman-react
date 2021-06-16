@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import GameOver from "./gameover"
+import GameOver from "./gameover";
 import InactiveGame from "./inactive";
-import ActiveGame from "./active"
+import ActiveGame from "./active";
 
 const GameContainer = () => {
     const [game, setGame] = useState(null);
@@ -45,21 +45,28 @@ const GameContainer = () => {
         return <GameOver game={game} handleNew={newGame} />;
     }
 
-    return <ActiveGame game={game} handleGuess={guess} letters={letters} guesses={guesses} />;
+    return (
+        <ActiveGame
+            game={game}
+            handleGuess={guess}
+            letters={letters}
+            guesses={guesses}
+        />
+    );
 };
 
 const alphabet = () => {
     const ascii = Array.from(Array(26)).map((e, i) => i + 65);
     return ascii.map((x) => String.fromCharCode(x));
-}
+};
 
 // I added this fake functionality to test the app independent of an API. Once
 // I'm satisfied with the view, replace this with actual API calls.
 let fakeAnswer = {
-    "Z": [0],
-    "E": [1],
-    "R": [2],
-    "O": [3],
+    Z: [0],
+    E: [1],
+    R: [2],
+    O: [3],
 };
 
 const fakeGame = () => {
@@ -78,9 +85,10 @@ const fakeGuess = (letter, game) => {
 
     if (fakeAnswer[letter]) {
         fakeAnswer[letter].forEach((index) => {
-            newCurrent = newCurrent.slice(0, index) +
-                letter + 
-                newCurrent.slice(index + 1)
+            newCurrent =
+                newCurrent.slice(0, index) +
+                letter +
+                newCurrent.slice(index + 1);
         });
         delete fakeAnswer[letter];
     } else {
@@ -92,20 +100,20 @@ const fakeGuess = (letter, game) => {
     }
 
     return {
-        ...game, 
-        current: newCurrent, 
-        remainingGuesses: newRemainingGuesses, 
-        answer: newAnswer
+        ...game,
+        current: newCurrent,
+        remainingGuesses: newRemainingGuesses,
+        answer: newAnswer,
     };
 };
 
 const resetAnswer = () => {
     fakeAnswer = {
-        "Z": [0],
-        "E": [1],
-        "R": [2],
-        "O": [3], 
-    }
-}
+        Z: [0],
+        E: [1],
+        R: [2],
+        O: [3],
+    };
+};
 
 export default GameContainer;
