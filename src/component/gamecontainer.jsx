@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { newGame, guess } from "../service/api";
 import GameOver from "./gameover";
 import InactiveGame from "./inactive";
 import ActiveGame from "./active";
@@ -8,12 +9,11 @@ const GameContainer = () => {
     const [guesses, setGuesses] = useState([]);
     const [letters, setLetters] = useState([]);
 
-    const newGame = async () => {
+    const handleNewGame = async () => {
         try {
-            const response = await fetch("http://localhost:14420/new");
-            const json = await response.json();
+            const g = await newGame();
 
-            setGame(json);
+            setGame(g);
             setGuesses([]);
             setLetters(alphabet());
         } catch (error) {
@@ -21,26 +21,18 @@ const GameContainer = () => {
         }
     };
 
-    const guess = async (letter) => {
+    const handleGuess = async (letter) => {
         try {
-            const response = await fetch("http://localhost:14420/guess", {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ id: game.id, guess: letter }),
-            });
-            const json = await response.json();
-            let newGuesses = guesses;
-            let newLetters = letters;
+            const g = await guess(game.id, letter);
 
+            let newGuesses = guesses;
             newGuesses.push(letter);
 
+            let newLetters = letters;
             let index = newLetters.indexOf(letter);
             newLetters.splice(index, 1);
 
-            setGame(json);
+            setGame(g);
             setGuesses(newGuesses);
             setLetters(newLetters);
         } catch (error) {
@@ -49,17 +41,17 @@ const GameContainer = () => {
     };
 
     if (game === null) {
-        return <InactiveGame handleNew={newGame} />;
+        return <InactiveGame handleNew={handleNewGame} />;
     }
 
     if (game.answer !== null) {
-        return <GameOver game={game} handleNew={newGame} />;
+        return <GameOver game={game} handleNew={handleNewGame} />;
     }
 
     return (
         <ActiveGame
             game={game}
-            handleGuess={guess}
+            handleGuess={handleGuess}
             letters={letters}
             guesses={guesses}
         />
