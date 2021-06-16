@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Game from "./Game";
+import Game from "./game";
 
 function App() {
     const [game, setGame] = useState(null);
