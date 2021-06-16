@@ -1,6 +1,6 @@
 import React from "react";
 
-const PlayGame = ({game, handleLetter, handleGuess}) => {
+const ActiveGame = ({game, handleLetter, handleGuess}) => {
     return (
         <div>
             <h2 className="current">{game.current}</h2>
@@ -8,7 +8,9 @@ const PlayGame = ({game, handleLetter, handleGuess}) => {
                 <input
                     className="letter-input"
                     maxLength={1}
-                    onChange={handleLetter}
+                    onChange={(e) => {
+                        handleLetter(e.target.value.toUpperCase());
+                    }}
                 />
 
                 <button
@@ -22,4 +24,4 @@ const PlayGame = ({game, handleLetter, handleGuess}) => {
     );
 }
 
-export default PlayGame;
+export default ActiveGame;
