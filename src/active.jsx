@@ -27,7 +27,7 @@ const ActiveGame = ({ game, handleGuess, letters, guesses }) => {
                 })}
             </div>
             <div>
-                <h2>Remaining guesses: {game.remainingGuesses}</h2>
+                <h2>Remaining guesses: {game.guesses_remaining}</h2>
             </div>
         </div>
     );
