@@ -22,7 +22,7 @@ const ActiveGame = ({game, handleGuess, letters, guesses}) => {
                     return (
                         <button
                             key={letter}
-                            className="btn"
+                            className="btn guessed"
                         >
                             {letter}
                         </button>

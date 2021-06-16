@@ -1,56 +1,58 @@
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-        monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 .App {
-    text-align: center;
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .btn {
-    background-color: #282c34;
-    display: inline-block;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    text-transform: capitalize;
-    color: white;
-    letter-spacing: 0.1rem;
-    border-color: whitesmoke;
-    cursor: pointer;
-    margin-top: 2rem;
-    font-size: 1.2rem;
+  background-color: #282c34;
+  display: inline-block;
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.25rem;
+  color: white;
+  border-color: whitesmoke;
+  cursor: pointer;
+  margin: 0.25rem;
+  margin-top: 2rem;
+  font-size: 1.7rem;
 }
 
-.letter-input {
-    background-color: whitesmoke;
-    display: inline-block;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    text-transform: uppercase;
-    border-color: whitesmoke;
-    margin-right: 0.7rem;
-    width: 1rem;
-    font-size: 1.2rem;
+.guessed {
+  color: lightskyblue;
+  border-color: lightskyblue;
 }
 
-.current {
-    color: white;
-    letter-spacing: 0.2rem;
+.win {
+  color: lightgreen;
+  letter-spacing: 0.2rem;
+}
+
+.loss {
+  color: lightcoral;
+  letter-spacing: 0.2rem;
+}
+
+.answer .current {
+  color: white;
+  letter-spacing: 0.2rem;
 }

@@ -28,7 +28,6 @@ const GameContainer = () => {
         let newLetters = letters;
 
         newGuessed.push(letter);
-        newGuessed.sort();
 
         let index = newLetters.indexOf(letter);
         newLetters.splice(index, 1);
